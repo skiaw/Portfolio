@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio — Walid-Mustafa Koriche</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/common.css" />
+  <link rel="stylesheet" href="assets/css/index-hero.css" />
+  <link rel="stylesheet" href="assets/css/index-carousel.css" />
+  <link rel="stylesheet" href="assets/css/index-carousel-controls.css" />
+  <link rel="stylesheet" href="assets/css/index-responsive.css" />
+</head>
+<body id="top">
+  <header class="header-bar d-flex justify-content-between align-items-start p-4">
+    <div class="social-icons d-flex flex-column gap-2">
+      <a href="#" class="fs-4"><i class="bi bi-linkedin"></i></a>
+      <a href="#" class="fs-4"><i class="bi bi-github"></i></a>
+    </div>
+    <div class="identity text-center flex-grow-1">
+      <h1 class="fw-bold mb-0"><a href="index.html" class="identity-link">Walid Koriche</a></h1>
+      <p class="text-secondary mb-0"></p>
+    </div>
+    <div class="menu-container text-end">
+      <button class="btn btn-outline-accent btn-menu" id="menu-toggle" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <i class="bi bi-list me-1" aria-hidden="true"></i> Menu
+      </button>
+      <div class="collapse menu-panel mt-3" id="menu">
+        <div class="menu-card p-3 d-flex flex-column text-end" role="menu" aria-label="Navigation rapide">
+          <a href="#experiences" class="menu-link" role="menuitem">Expériences</a>
+          <a href="pages/projects.html" class="menu-link" role="menuitem">Projets</a>
+          <a href="pages/about.html" class="menu-link" role="menuitem">À propos de moi</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="hero-photo text-center mt-5">
+    <img src="public/pictures/IMG_6395.jpg" alt="Photo de Walid Koriche" class="hero-avatar" loading="eager" decoding="async" />
+  </section>
+  <main class="text-center mt-5">
+    <section id="experiences" class="py-5">
+      <div class="container position-relative">
+        <div class="cta d-flex justify-content-center gap-3">
+          <a href="#experiences" class="btn btn-outline-accent px-4">Expériences</a>
+          <a href="pages/projects.html" class="btn btn-outline-accent px-4">Projets</a>
+          <a href="pages/about.html" class="btn btn-outline-accent px-4">À propos de moi</a>
+          <a href="public/pdf/cv_Walid.pdf" target="_blank" rel="noopener" class="btn btn-outline-accent px-4">CV</a>
+        </div>
+        <h2 class="duo-title fw-bold text-uppercase mt-5 mb-2">Expériences</h2>
+        <p class="text-secondary mb-4">Découvrez un aperçu des missions marquantes réalisées ces dernières années.</p>
+        <h3 class="duo-shadow-title">Walid Koriche</h3>
+        <div class="duo-carousel">
+          <button class="nav-arrow left" type="button" aria-label="Voir les expériences précédentes">&lsaquo;</button>
+          <div class="carousel-track">
+            <div class="pair-card" data-index="0">
+              <div class="pair-block image-block">
+                <img src="https://h3v2h5f6.delivery.rocketcdn.me/wp-content/uploads/2021/07/baie-informatique-hardwarecooking-08.jpg" alt="Installation d'une baie informatique" loading="lazy">
+              </div>
+              <div class="pair-block text-block">
+                <h3>Atixit</h3>
+                <p class="role">Informaticien itinérant</p>
+                <p class="description">
+                  Référent client pour le Centre départemental de l'enfant et de la Famille<br>
+                  Administration systèmes et réseaux <br>
+                  Migration serveur mail <br>
+                  Résolutions de pannes informatiques<br>
+                  Gestion matériel (Switch et Esxi)<br>
+                  Support informatique sur place et à distance
+                </p>
+              </div>
+            </div>
+            <div class="pair-card" data-index="1">
+              <div class="pair-block image-block">
+                <img src="https://poteletchabot.com/wp-content/uploads/2017/11/pcc.jpg" alt="Support technique événementiel" loading="lazy">
+              </div>
+              <div class="pair-block text-block">
+                <h3>DGSI - Sécurité Privée</h3>
+                <p class="role">Agent de sécurité Incendie SSIAP 1</p>
+                <p class="description">Gestion du système de sécurité incendie <br> gestion événementielle<br> secours à personnes.</p>
+              </div>
+            </div>
+            <div class="pair-card" data-index="2">
+              <div class="pair-block image-block">
+                <img src="https://locations.filmfrance.net/sites/default/files/photos/college-victor-hugo-exterieurs-parking-218472/aentreeprincipale001-hdr-copie.jpg" alt="Modernisation d'un collège" loading="lazy">
+              </div>
+              <div class="pair-block text-block">
+                <h3>Collège Victor Hugo - Aulnay-sous-Bois</h3>
+                <p class="role">Stagiaire Professeur de Mathématique</p>
+                <p class="description">Remplacement de professeur absent & assistance pédagogique</p>
+              </div>
+            </div>
+          </div>
+          <button class="nav-arrow right" type="button" aria-label="Voir les expériences suivantes">&rsaquo;</button>
+        </div>
+        <div class="dots" role="tablist" aria-label="Sélection des expériences"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="text-center py-3 border-top border-secondary">
+    <small class="text-secondary">© <span id="y"></span> Walid Koriche</small>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

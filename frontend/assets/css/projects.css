@@ -1,0 +1,2 @@
+.project-card { gap:0.5rem }
+.project-image { display:block; border-radius:12px; aspect-ratio:16 / 9; object-fit:cover; margin:0.25rem auto 0.75rem auto; width:85%; max-height:180px; height:auto; box-shadow:0 8px 18px rgba(62, 47, 28, 0.12) }

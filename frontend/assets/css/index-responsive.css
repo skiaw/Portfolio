@@ -1,0 +1,24 @@
+@media (max-width: 992px) {
+  .duo-carousel { height:480px; margin-top:4rem }
+  .pair-card { width:min(100%, 720px); height:400px }
+  .pair-card.left-1 { transform:translateY(-50%) translateX(-210px) scale(0.88) translateZ(-140px) }
+  .pair-card.right-1 { transform:translateY(-50%) translateX(210px) scale(0.88) translateZ(-140px) }
+  .pair-card.left-2 { transform:translateY(-50%) translateX(-420px) scale(0.78) translateZ(-260px) }
+  .pair-card.right-2 { transform:translateY(-50%) translateX(420px) scale(0.78) translateZ(-260px) }
+}
+@media (max-width: 768px) {
+  .duo-shadow-title { font-size:clamp(2.75rem, 18vw, 5.5rem); top:45px }
+  .duo-carousel { height:520px }
+  .pair-card { width:100%; height:auto; grid-template-columns:1fr; grid-auto-rows:auto }
+  .pair-block.image-block { min-height:220px }
+  .pair-block.text-block { padding:2rem 1.75rem }
+  .pair-card.left-1 { transform:translateY(-50%) translateX(-160px) scale(0.9) translateZ(-110px) }
+  .pair-card.right-1 { transform:translateY(-50%) translateX(160px) scale(0.9) translateZ(-110px) }
+  .pair-card.left-2, .pair-card.right-2 { transform:translateY(-50%) translateX(0) scale(0.75) translateZ(-260px); opacity:0 }
+}
+@media (max-width: 576px) {
+  .duo-carousel { height:520px; padding:0 1rem }
+  .pair-card { border-radius:18px }
+  .pair-block.text-block h3 { font-size:1.35rem }
+  .pair-block.text-block .description { font-size:0.9rem }
+}
