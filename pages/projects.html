@@ -11,24 +11,27 @@
   <link rel="stylesheet" href="../assets/css/projects.css" />
 </head>
 <body id="top">
-  <header class="header-bar d-flex justify-content-between align-items-start p-4">
-    <div class="social-icons d-flex flex-column gap-2">
-      <a href="#" class="fs-4"><i class="bi bi-linkedin"></i></a>
-      <a href="#" class="fs-4"><i class="bi bi-github"></i></a>
-    </div>
-    <div class="identity text-center flex-grow-1">
-      <h1 class="fw-bold mb-0"><a href="../index.html" class="identity-link">Walid Koriche</a></h1>
-      <p class="text-secondary mb-0">Apprenti Administrateur systèmes & réseaux</p>
-    </div>
-    <div class="menu-container text-end">
-      <button class="btn btn-outline-accent btn-menu" id="menu-toggle" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
-        <i class="bi bi-list me-1" aria-hidden="true"></i> Menu
-      </button>
-      <div class="collapse menu-panel mt-3" id="menu">
-        <div class="menu-card p-3 d-flex flex-column text-end" role="menu" aria-label="Navigation rapide">
-          <a href="../index.html#experiences" class="menu-link" role="menuitem">Expériences</a>
-          <a href="projects.html" class="menu-link" role="menuitem" aria-current="page">Projets</a>
-          <a href="about.html" class="menu-link" role="menuitem">À propos</a>
+  <header class="site-header py-4">
+    <div class="container position-relative">
+      <div class="identity text-center">
+        <h1 class="fw-bold mb-1"><a href="../index.html" class="identity-link">Walid Koriche</a></h1>
+      </div>
+      <div class="header-actions d-flex align-items-center flex-wrap gap-3 mt-3">
+        <div class="social-icons d-flex align-items-center gap-3">
+          <a href="#" class="fs-4"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="fs-4"><i class="bi bi-github"></i></a>
+        </div>
+        <div class="menu-container">
+          <button class="btn btn-outline-accent btn-menu" id="menu-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
+            <i class="bi bi-list me-2" aria-hidden="true"></i> Menu
+          </button>
+          <div class="collapse menu-panel mt-3" id="menu">
+            <div class="menu-card p-3 d-flex flex-column text-end" role="menu" aria-label="Navigation rapide">
+              <a href="../index.html#experiences" class="menu-link" role="menuitem">Expériences</a>
+              <a href="projects.html" class="menu-link" role="menuitem" aria-current="page">Projets</a>
+              <a href="about.html" class="menu-link" role="menuitem">À propos</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

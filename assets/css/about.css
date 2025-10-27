@@ -1,1 +1,4 @@
-
+.contact-section .info-card { max-width:720px; margin:0 auto }
+.contact-form .form-control { border:1px solid rgba(62,47,28,0.2); border-radius:12px; background-color:rgba(250,248,244,0.75); color:var(--text-primary) }
+.contact-form .form-control:focus { border-color:var(--color-accent); box-shadow:0 0 0 0.2rem rgba(201,124,93,0.25) }
+.contact-form .form-label { margin-bottom:0.35rem; letter-spacing:0.08em }
