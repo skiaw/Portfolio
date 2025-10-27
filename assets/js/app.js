@@ -75,11 +75,59 @@ const yearTarget = document.getElementById('y'); if (yearTarget) { yearTarget.te
   const grid = document.getElementById('projects-grid');
   if (!grid) return;
 
+  const CACHE_KEY = 'portfolioProjectsCache';
+  const CACHE_TTL = 1000 * 60 * 30; // 30 minutes
+
+  function readCache() {
+    try {
+      const raw = window.localStorage && window.localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== 'object') return null;
+      if (!parsed.items || !Array.isArray(parsed.items)) return null;
+      if (!parsed.ref || typeof parsed.ref !== 'string') return null;
+      if (!parsed.timestamp || Date.now() - parsed.timestamp > CACHE_TTL) return null;
+      return parsed;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function writeCache(items, ref) {
+    try {
+      if (!window.localStorage) return;
+      const payload = JSON.stringify({ items, ref, timestamp: Date.now() });
+      window.localStorage.setItem(CACHE_KEY, payload);
+    } catch (_) {
+      /* noop */
+    }
+  }
+
+  function renderStatus(message) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'col-12';
+    wrapper.innerHTML = '<div class="info-card p-4 text-center text-secondary small">' + message + '</div>';
+    grid.appendChild(wrapper);
+  }
+
+  const cached = readCache();
+  if (cached) {
+    renderProjects(cached.items);
+  }
+
   const backend = window.PROJECTS_API_URL && String(window.PROJECTS_API_URL).trim();
   if (backend) {
     const base = backend.replace(/\/$/, '');
     const url = base + '/projects';
-    fetch(url).then((r) => r.json()).then((items) => renderProjects(items)).catch(() => {});
+    fetch(url)
+      .then((r) => r.json())
+      .then((items) => {
+        renderProjects(items);
+        writeCache(items, 'remote');
+      })
+      .catch(() => {
+        if (!cached) renderStatus('Impossible de récupérer les projets pour le moment.');
+      });
     return;
   }
 
@@ -87,14 +135,34 @@ const yearTarget = document.getElementById('y'); if (yearTarget) { yearTarget.te
   const repo = (window.GH_REPO || 'Projects').trim();
   const path = (window.GH_PATH || '').replace(/^\/+|\/+$/g, '');
 
-  fetch(`https://api.github.com/repos/${owner}/${repo}`)
-    .then((r) => r.json())
-    .then((meta) => meta && (meta.default_branch || 'main'))
-    .then((ref) => {
-      const suffix = path ? `/contents/${encodeURIComponent(path)}` : '/contents';
-      const url = `https://api.github.com/repos/${owner}/${repo}${suffix}?ref=${encodeURIComponent(ref)}`;
-      return fetch(url).then((r) => r.json()).then((items) => ({ items, ref }));
-    })
+  const cachedRef = cached && typeof cached.ref === 'string' && cached.ref !== 'remote' ? cached.ref : null;
+
+  function fetchContents(ref) {
+    const suffix = path ? `/contents/${encodeURIComponent(path)}` : '/contents';
+    const url = `https://api.github.com/repos/${owner}/${repo}${suffix}?ref=${encodeURIComponent(ref)}`;
+    return fetch(url)
+      .then((r) => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then((items) => ({ items, ref }));
+  }
+
+  function fetchDefaultBranchAndContents() {
+    return fetch(`https://api.github.com/repos/${owner}/${repo}`)
+      .then((r) => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then((meta) => meta && (meta.default_branch || 'main'))
+      .then((ref) => fetchContents(ref));
+  }
+
+  const primaryFetch = cachedRef
+    ? fetchContents(cachedRef).catch(() => fetchDefaultBranchAndContents())
+    : fetchDefaultBranchAndContents();
+
+  primaryFetch
     .then(({ items, ref }) => {
       const dirs = Array.isArray(items) ? items.filter((it) => it && it.type === 'dir') : [];
       const mapped = dirs.map((d) => {
@@ -105,11 +173,19 @@ const yearTarget = document.getElementById('y'); if (yearTarget) { yearTarget.te
         return { name, path: p, html_url, image_url };
       });
       renderProjects(mapped);
+      writeCache(mapped, ref);
     })
-    .catch(() => {});
+    .catch((err) => {
+      if (!cached) renderStatus('GitHub n\'a pas répondu. Réessayez plus tard ou configurez un cache local.');
+      console.error('[projects] fetch error:', err);
+    });
 
   function renderProjects(items) {
     grid.innerHTML = '';
+    if (!items || !items.length) {
+      renderStatus('Aucun projet disponible pour le moment.');
+      return;
+    }
     items.forEach((it) => {
       const col = document.createElement('div');
       col.className = 'col-md-6 col-lg-4';
