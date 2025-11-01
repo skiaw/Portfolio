@@ -1,5 +1,6 @@
 :root { --color-primary:#F5EBDD; --color-secondary:#E4D1B9; --color-accent:#C97C5D; --text-primary:#3E2F1C; --text-secondary:#7C6E5F; --bg-alt:#FAF8F4; --hover:#DABFA3 }
-body { font-family:"Montserrat",sans-serif; background-color:var(--color-primary); color:var(--text-primary); outline:none; caret-color:var(--color-accent) }
+body { font-family:"Montserrat",sans-serif; background-color:var(--color-primary); color:var(--text-primary); outline:none; caret-color:transparent }
+input, textarea, [contenteditable="true"], [contenteditable=""] { caret-color:transparent }
 .site-header { position:sticky; top:0; z-index:1020; width:100%; background:linear-gradient(180deg, rgba(245,235,221,0.95), rgba(245,235,221,0)); backdrop-filter:blur(6px) }
 .identity { text-align:center }
 .identity h1 { font-weight:800; margin:0 }
